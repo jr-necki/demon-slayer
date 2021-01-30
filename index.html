@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>무한 열차 예매</title>
+    <link rel="shortcut icon"
+        href="https://images.mir.pe/file/75d8869d160b12bca6fadedc362f50852dd6432c20a598ed537c2137a81d4479">
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+        html {
+            /*box-sizing: border-box;*/
+            background: red;
+            font-size: 20px;
+            font-weight: 200;
+
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .panels {
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .panel {
+            background: #6B0F9C;
+            box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            align-items: center;
+            filter: grayscale(100%);
+            /* Safari transitionend event.propertyName === flex */
+            /* Chrome + FF transitionend event.propertyName === flex-grow */
+            transition:
+                font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+                background 0.2s;
+
+            font-size: 20px;
+            background-size: cover;
+            background-position: center;
+            flex: 1;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel1 {
+            background-image: url(https://2.gall-img.com/tdgall/files/attach/images/82/714/988/082/7f4e5b1fa644d371a4406392249246c2.jpg);
+        }
+
+        .panel2 {
+            background-image: url(https://2.gall-img.com/tdgall/files/attach/images/82/714/988/082/8a357c8c2faaa61d9c0492795812ac02.jpg);
+        }
+
+        .panel3 {
+            background-image: url(https://2.gall-img.com/tdgall/files/attach/images/82/805/717/100/869848f11028c4ffc8b3bdd682ef73f7.jpg);
+        }
+
+        .panel4 {
+            background-image: url(https://2.gall-img.com/tdgall/files/attach/images/82/714/988/082/eb4c29129535f47db252f9277810b1c3.jpg);
+        }
+
+        .panel5 {
+            background-image: url(https://2.gall-img.com/tdgall/files/attach/images/82/714/988/082/4eaf0b0578fad861a4ea2be68f77af11.jpg);
+        }
+
+
+        /* Flex Items */
+        .panel>* {
+            margin: 0;
+            width: 100%;
+            transition: transform 0.5s;
+            flex: 2 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .panel>*:first-child {
+            transform: translateY(-100%);
+        }
+
+        .panel.open-active>*:first-child {
+            transform: translateY(0);
+
+        }
+
+        @keyframes colorEffect {
+            0% {
+                filter: grayscale(100%);
+            }
+
+            50% {
+                filter: grayscale(50%);
+            }
+
+            100% {
+                filter: grayscale(0%);
+            }
+        }
+
+        @keyframes tanjiroEffect {
+            0% {
+                color: green;
+            }
+
+            50% {
+                color: greenyellow;
+            }
+
+            100% {
+                color: green;
+            }
+        }
+
+        @keyframes nezcoEffect {
+            0% {
+                color: pink;
+            }
+
+            50% {
+                color: plum;
+            }
+
+            100% {
+                color: pink;
+            }
+        }
+
+        @keyframes rangocuEffect {
+            0% {
+                color: orange;
+            }
+
+            50% {
+                color: red;
+            }
+
+            100% {
+                color: orange;
+            }
+        }
+
+        @keyframes inoskeEffect {
+            0% {
+                color: blue;
+            }
+
+            50% {
+                color: gray;
+            }
+
+            100% {
+                color: blue;
+            }
+        }
+
+        @keyframes tomiokaEffect {
+            0% {
+                color: yellow;
+            }
+
+            50% {
+                color: rgba(145, 251, 255, 0.938);
+            }
+
+            100% {
+                color: yellow;
+            }
+        }
+
+        .panel>*:last-child {
+            transform: translateY(100%);
+        }
+
+        .open-active>.tanjiro {
+            animation: tanjiroEffect 1s ease-in-out infinite;
+        }
+
+        .open-active>.nezco {
+            animation: nezcoEffect 1s ease-in-out infinite;
+        }
+
+        .open-active>.rangocu {
+            animation: rangocuEffect 1s ease-in-out infinite;
+        }
+
+        .open-active>.inoske {
+            animation: inoskeEffect 1s ease-in-out infinite;
+        }
+
+        .open-active>.tomioka {
+            animation: tomiokaEffect 1s ease-in-out infinite;
+        }
+
+        .panel.open-active>*:last-child {
+            transform: translateY(0);
+        }
+
+        .panel p {
+            text-transform: uppercase;
+            font-family: 'Ma Shan Zheng', cursive;
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+            font-size: 2em;
+        }
+
+        .panel p:nth-child(2) {
+            font-size: 4em;
+        }
+
+        @keyframes colorEffect {
+            0% {
+                filter: grayscale(100%);
+            }
+
+            50% {
+                filter: grayscale(50%);
+            }
+
+            100% {
+                filter: grayscale(0%);
+            }
+        }
+
+        .panel.open {
+            flex: 5;
+            font-size: 40px;
+            animation: colorEffect 0.3s ease-out forwards;
+        }
+
+        .panel:hover {
+            filter: grayscale(50%);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .panel p {
+                font-size: 1em;
+            }
+        }
+
+        .ticket {
+            display: block;
+            background-color: red;
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Jua', sans-serif;
+        }
+
+        .train {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            font-family: 'Jua', sans-serif;
+        }
+    </style>
+    <div class="train">
+        ⚡귀멸의 칼날 극장판 국내 개봉⚡
+    </div>
+
+    <div class="panels">
+        <div class="panel panel1">
+            <p class="level">癸</p>
+            <p class="tanjiro">Tanjiro</p>
+            <p class="level">烈日</p>
+        </div>
+        <div class="panel panel2">
+            <p class="level">鬼</p>
+            <p class="nezco">Nezco</p>
+            <p class="level">爆血</p>
+        </div>
+        <div class="panel panel3">
+            <p class="level">柱</p>
+            <p class="rangocu">Rangocu</p>
+            <p class="level">炎柱</p>
+        </div>
+        <div class="panel panel4">
+            <p class="level">癸</p>
+            <p class="inoske">Inoske</p>
+            <p class="level">爆裂猛</p>
+        </div>
+        <div class="panel panel5">
+            <p class="level">柱</p>
+            <p class="tomioka">Genitz</p>
+            <p class="level">水柱</p>
+        </div>
+    </div>
+    <div class="ticket">
+        <a href="https://www.lottecinema.co.kr/NLCMW/Movie/MovieDetailView?movie=16908">🚂무한 열차 예매하러 가기🚂</a>
+    </div>
+    <audio class="sword" src="칼소리.wav"></audio>
+
+    <script>
+        const panels = document.querySelectorAll('.panel');
+
+        function toggleOpen() {
+            console.log('Hello');
+            this.classList.toggle('open');
+        }
+
+        function toggleActive(e) {
+            console.log(e.propertyName);
+            if (e.propertyName.includes('flex')) {
+                this.classList.toggle('open-active');
+            }
+        }
+
+        function playSound(e) {
+            const audio = document.querySelector(".sword");
+            if (!audio) return;
+
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        function handleMouseover(e) {
+            e.toggle
+        }
+
+        panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+        panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+        panels.forEach(panel => panel.addEventListener("click", playSound));
+
+    </script>
+
+</body>
+
+</html>
